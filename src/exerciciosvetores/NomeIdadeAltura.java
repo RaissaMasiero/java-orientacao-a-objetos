@@ -38,7 +38,6 @@ public class NomeIdadeAltura {
         double mediaAltura = somaAltura / p;
         System.out.printf("Altura média: %.2f%n", mediaAltura);
 
-
         for(int i=0; i< idades.length; i++){
             if(idades[i] < 16){
                System.out.println(nomes[i]);
