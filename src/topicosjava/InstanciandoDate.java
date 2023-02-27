@@ -5,14 +5,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Date {
+public class InstanciandoDate {
 
     public static void main(String[] args) {
 
         DateTimeFormatter fmt1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter fmt2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-        // instanciação
+        // instanciação data-hora para texto
+
         LocalDate d01 = LocalDate.now();
         LocalDateTime d02 = LocalDateTime.now();
         Instant d03 = Instant.now();
