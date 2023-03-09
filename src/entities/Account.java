@@ -1,8 +1,9 @@
 package entities;
 public class Account {
+
     private int numeroConta;
     private String nomeTitular;
-    private double saldo;
+    protected double saldo;
 
     public Account(){}
     public Account(int numeroConta, String nomeTitular, double valorDeposito){
