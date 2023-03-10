@@ -4,6 +4,9 @@ import entities.Account;
 import entities.BusinessAcount;
 import entities.SavingsAccount;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ProgramSavingsAccount {
 
     public static void main(String[] args) {
@@ -62,5 +65,33 @@ public class ProgramSavingsAccount {
 
         System.out.println(x.getSaldo());
         System.out.println(y.getSaldo());
+
+        System.out.println("-----------------------------------------");
+
+        // totalizar o saldo de todas as contas e depositar em todas as contas
+
+        List<Account> list = new ArrayList<>();
+
+        list.add(new SavingsAccount(1010, "Alex", 500.00, 0.01));
+        list.add(new BusinessAcount(1009, "Maria", 1000.00, 400.00));
+        list.add(new SavingsAccount(1008, "Bob", 300.0, 0.01));
+        list.add(new BusinessAcount(1011, "Ana", 500.0, 500.0));
+
+        double sum = 0.0;
+        for(Account a : list){
+            sum += a.getSaldo();
+        }
+
+        System.out.printf("Saldo de contas: %.2f%n", sum);
+
+        System.out.println("-----------------------------------------");
+
+        for(Account a : list){
+            a.deposito(10.0);
+        }
+
+        for(Account a : list){
+            System.out.printf("Saldo atualizado para conta %d: %.2f%n", a.getNumeroConta(), a.getSaldo());
+        }
     }
 }
