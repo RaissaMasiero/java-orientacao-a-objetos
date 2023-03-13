@@ -13,7 +13,7 @@ public class ProgramReservationRuim {
         mostrar os dados da reserva, inclusive sua duração em dias. Em seguida, ler novas datas de entrada e saída, atualizar
         a reserva, e mostrar novamente a reserva com os dados atualizados. O programa não deve aceitar dados inválidos para a
         reserva, conforme as seguintes regras: - Alterações de reserva só podem ocorrer para datas futuras - A data de saída
-        deve ser maior que a data de entrada (SOLUÇÃO MUITO RUIM)*/
+        deve ser maior que a data de entrada (SOLUÇÃO AINDA RUIM, MAS MELHOR QUE ANTES)*/
 
         Scanner sc = new Scanner(System.in);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -41,15 +41,12 @@ public class ProgramReservationRuim {
             System.out.print("Data de saída (dd/MM/yyyy): ");
             dataSaida = sdf.parse(sc.next());
 
-            Date agora = new Date();
+            String erro = reserva.atualizarDatas(dataEntrada, dataSaida);
 
-            if(dataEntrada.before(agora) || dataSaida.before(agora)){
-                System.out.println("Erro na reserva: datas de reserva para atualização devem ser datas futuras!");
-            }else if(!dataSaida.after(dataEntrada)){
-                System.out.println("Erro na reserva: data de saída deve ser depois da data de entrada!");
-            }else{
-                reserva.atualizarDatas(dataEntrada, dataSaida);
-                System.out.println("Reserva: " + reserva);
+            if(erro != null){
+               System.out.println("Erro na reserva: " + erro);
+            }else {
+               System.out.println("Reserva: " + reserva);
             }
         }
 
