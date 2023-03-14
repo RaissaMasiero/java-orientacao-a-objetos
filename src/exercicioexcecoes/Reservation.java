@@ -1,5 +1,7 @@
 package exercicioexcecoes;
 
+import exception.DomainException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -13,7 +15,10 @@ public class Reservation {
 
     public Reservation(){}
 
-    public Reservation(Integer numeroQuarto, Date dataEntrada, Date dataSaida) {
+    public Reservation(Integer numeroQuarto, Date dataEntrada, Date dataSaida){
+        if(!dataSaida.after(dataEntrada)){
+            throw new DomainException("Data de saída deve ser depois da data de entrada!");
+        }
         this.numeroQuarto = numeroQuarto;
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
@@ -40,17 +45,16 @@ public class Reservation {
         return TimeUnit.DAYS.convert(dif, TimeUnit.MILLISECONDS);
     }
 
-    public String atualizarDatas(Date dataEntrada, Date dataSaida){
+    public void atualizarDatas(Date dataEntrada, Date dataSaida){
         Date agora = new Date();
         if(dataEntrada.before(agora) || dataSaida.before(agora)){
-            return "Datas de reserva para atualização devem ser datas futuras!";
+            throw new DomainException("Datas de reserva para atualização devem ser datas futuras!");
         }
         if(!dataSaida.after(dataEntrada)){
-            return "Data de saída deve ser depois da data de entrada!";
+            throw new DomainException("Data de saída deve ser depois da data de entrada!");
         }
         this.dataEntrada = dataEntrada;
         this.dataSaida = dataSaida;
-        return null;
     }
 
     @Override
